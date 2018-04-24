@@ -10,6 +10,8 @@
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
+    <div id="totalAmountdiv"></div>
+    <input type="hidden" name="totalAmount" id="totalAmountinput" />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
@@ -38,4 +40,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $('#totalAmountdiv').text("4");
+         $('#totalAmountinput').val("4");
+        </script>
 }
+
+@* I need to display one value and pass it to the back end and it can be part of model or not. that value will be rendered in front end. *@
