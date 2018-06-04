@@ -60,3 +60,51 @@ Now, with every new request to the server, the browser will send back all previo
 GET /sample_page.html HTTP/1.1
 Host: www.example.org
 Cookie: yummy_cookie=choco; tasty_cookie=strawberry
+=======================================================
+================================================================================================================================
+Http Request Header:
+GET /tutorials/other/top-20-mysql-best-practices/ HTTP/1.1
+Host: net.tutsplus.com
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 300
+Connection: keep-alive
+Cookie: PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120
+Pragma: no-cache
+Cache-Control: no-cache
+=================================================================================================================================
+Http Response
+HTTP/1.x 200 OK
+Transfer-Encoding: chunked
+Date: Sat, 28 Nov 2009 04:36:25 GMT
+Server: LiteSpeed
+Connection: close
+X-Powered-By: W3 Total Cache/0.8
+Pragma: public
+Expires: Sat, 28 Nov 2009 05:36:25 GMT
+Etag: "pub1259380237;gz"
+Cache-Control: max-age=3600, public
+Content-Type: text/html; charset=UTF-8
+Last-Modified: Sat, 28 Nov 2009 03:50:37 GMT
+X-Pingback: http://net.tutsplus.com/xmlrpc.php
+Content-Encoding: gzip
+Vary: Accept-Encoding, Cookie, User-Agent
+ !!!!!FROM HERE THE BODY STARTS!!!!
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Top 20+ MySQL Best Practices - Nettuts+</title>
+<!-- ... rest of the html ... -->
+
+Breakup for Header:
+The "method" indicates what kind of request this is. Most common methods are GET, POST and HEAD.
+The "path" is generally the part of the url that comes after the host (domain). For example, when requesting "http://net.tutsplus.com/tutorials/other/top-20-mysql-best-practices/" , the path portion is "/tutorials/other/top-20-mysql-best-practices/".
+The "protocol" part contains "HTTP" and the version, which is usually 1.1 in modern browsers.
+Set-Cookie
+When a website wants to set or update a cookie in your browser, it will use this header.
+Set-Cookie: skin=noskin; path=/; domain=.amazon.com; expires=Sun, 29-Nov-2009 21:42:28 GMT
+Set-Cookie: session-id=120-7333518-8165026; path=/; domain=.amazon.com; expires=Sat Feb 27 08:00:00 2010
