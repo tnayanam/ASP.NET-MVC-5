@@ -1,0 +1,62 @@
+Imagine a request over the web where you have a client browser communicating to a server process. To maintain state over the stateless http protocol 
+the browser will send typically send a session identifier to the server on each request. For each request the server will be like "ah, its this guy".
+State information can then be looked up in server side memory or in a database based on this session id.
+
+In a purely stateless environment you wouldn't need this session id. Each request would contain all the information the server would need to process. But many applications need to maintain state 
+to keep track of whether or not a session is authenticated to view certain content or to keep track of what a user is doing. You wouldn't want to send user credentials over the wire for each request.
+Session is stored in Server Memory
+Cookie is stored in Client Memory
+A cookie has a name and a value, and other attribute such as domain and path, expiration date, version number, and comments.  Domain and path specifies which server (and path) to return the cookie.
+  Cookie could be persistent (with a future expiration date) or last only for that
+ particular browser’s session (i.e., removed when you close the browser).  A web browser is only required to accept up to 20 cookies per server and 300 cookies in total.  Each cookie is limited to 4 KB.
+ "Set-Cookie" Response Header
+A cookie is created when a client visits a site for the first time. A server-side program sends a response message containing a "Set-Cookie" response header. The header contains a name/value pair of 
+the cookie plus some additional information.
+Set-Cookie: cookie-name=cookie-value; expires=date; path=path-name; domain=domain-name; secure
+Session state
+Session state is a feature in ASP.NET Core that you can use to save and store user data while the user browses your web app. Consisting of a dictionary or hash table on the server, session state
+ persists data across requests from a browser. The session data is backed by a cache.
+
+ASP.NET Core maintains session state by giving the client a cookie that contains the session ID, which is sent to the server with each request. The server uses the session ID to fetch the session data.
+ Because the session cookie is specific to the browser, you cannot share sessions 
+across browsers. Session cookies are deleted only when the browser session ends. If a cookie is received for an expired session, a new session that uses the same session cookie is created.
+
+The server retains a session for a limited time after the last request. Either set the session timeout or use the default value of 20 minutes. Session state is ideal for storing user data that's
+ specific to a particular session but doesn't need to be persisted permanently. Data is deleted from the backing store either when calling Session.Clear or when the session expires in the data store.
+ The server doesn't know when the browser is closed or when the session cookie is deleted.
+ Cookies are key/value pairs used by websites to store state informations on the browser.
+ Browser request example:
+
+GET /index.html HTTP/1.1
+Host: www.example.com
+Example answer from the server:
+
+HTTP/1.1 200 OK
+Content-type: text/html
+Set-Cookie: foo=10
+Set-Cookie: bar=20; Expires=Fri, 30 Sep 2011 11:48:00 GMT
+... rest  of the response
+Here two cookies foo=10 and bar=20 are stored on the browser. The second one will expire on 30 September. In each subsequent request the browser will send the cookies back to the server.
+
+GET /spec.html HTTP/1.1
+Host: www.example.com
+Cookie: foo=10; bar=20
+Accept: */*
+Creating cookies
+When receiving an HTTP request, a server can send a Set-Cookie header with the response. The cookie is usually stored by the browser, and then the cookie is sent with requests made to the same server inside a Cookie HTTP header. An expiration date or duration can be specified, after which the cookie is no longer sent. Additionally, restrictions to a specific domain and path can be set, limiting where the cookie is sent.
+
+The Set-Cookie and Cookie headers
+The Set-Cookie HTTP response header sends cookies from the server to the user agent. A simple cookie is set like this:
+
+Set-Cookie: <cookie-name>=<cookie-value>
+HTTP/1.0 200 OK
+Content-type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+
+[page content]
+Now, with every new request to the server, the browser will send back all previously stored cookies to the server using the Cookie header.
+
+GET /sample_page.html HTTP/1.1
+Host: www.example.org
+Cookie: yummy_cookie=choco; tasty_cookie=strawberry
